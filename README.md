@@ -37,4 +37,9 @@ Benefits :
 1.Saving million litres of fuel 
 2.Time for search and money .
 
-Thank you 
+How does this technically work?
+This code can only be run in chrome as it uses chrome extension that has been made by our team.This extension virally injects the ouput from iframe to the desired web page.We have used iframe to get the output of the arduino in a page with the IP address given dynamically by the arduino and have trasferred the output to the main parking slot page(index.html).
+(Note: This concept has been used because iframe cannot directly be called through id from parent class,only message passing can been done through forced injection of message in the page.
+
+We have also uploaded images and videos for the output!Happy learning! 
+
