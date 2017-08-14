@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <title>Map||ParkX</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #mapCanvas {
+    width: 100%;
+    height: 100%;
+}
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+    * {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+}
+body .wrapper {
+  width: 100%;
+  height: 100vh;
+  background: #1D1313;
+  position: absolute;
+  overflow: hidden;
+}
+body .wrapper span {
+  z-index: 9999;
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  width: 35px;
+  height: 4px;
+  background: #ffffff;
+  cursor: pointer;
+}
+body .wrapper span:before, body .wrapper span:after {
+  display: block;
+  position: absolute;
+  content: '';
+  left: 0;
+  height: 4px;
+  width: 35px;
+  background: #ffffff;
+}
+body .wrapper span:before {
+  top: -8px;
+}
+body .wrapper span:after {
+  bottom: -8px;
+}
+body .wrapper .title {
+  position: absolute;
+ 
+  height: 100%;
+  margin-top: -50px;
+  width: 100%;
+  z-index: 999;
+  
+  text-align: center;
+}
+body .wrapper .title h1 {
+  color: #1D1313;
+}
+body .wrapper .overlay {
+  position: absolute;
+  bottom: -99%;
+  height: 100%;
+  background: #1D1313;
+  left: 0;
+  width: 100%;
+  transition: all 0.5s ease;
+  z-index: 999;
+}
+body .wrapper .overlay.anim {
+  left: 0;
+  bottom: 0;
+  animation: menu-anim 1.5s 1 ease-out normal;
+  width: 25%;
+  transition: all 0.5s ease;
+}
+body .wrapper .overlay.anim.reverse-anim {
+  left: 0;
+  bottom: 0;
+  animation: menu-anim 1.5s 1 ease-out reverse;
+  width: 25%;
+  transition: all 0.5s ease;
+}
+body .wrapper .overlay ul {
+  width: 100%;
+  text-align: center;
+  margin-top: 100px;
+  padding-left: 0;
+  margin-left: -10px;
+  font-size: 2em;
+  font-weight: 800;
+}
+body .wrapper .overlay ul li {
+  margin: 10px 0;
+}
+body .wrapper .overlay ul li a {
+  text-decoration: none;
+  color: white;
+  position: relative;
+  display: inline-block;
+  padding: 10px 0;
+  overflow: hidden;
+}
+body .wrapper .overlay ul li a:after {
+  display: block;
+  border-radius: 2px;
+  content: '';
+  left: 0;
+  bottom: -10px;
+  height: 5px;
+  background: #ffffff;
+  transform: translateX(-101%);
+}
+body .wrapper .overlay ul li a:hover {
+  text-decoration: none;
+}
+body .wrapper .overlay ul li a:hover:after {
+  animation: border-anim 0.5s 1 ease normal;
+  transform: translateX(0);
+}
+@-webkit-keyframes border-anim {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes menu-anim {
+  0% {
+    left: 0;
+    bottom: -99%;
+    width: 100%;
+  }
+  33% {
+    left: -99.5%;
+    bottom: -99%;
+    width: 100%;
+  }
+  66% {
+    left: -99.5%;
+    bottom: 0;
+    width: 100%;
+  }
+  100% {
+    bottom: 0;
+    left: 0;
+    width: 25%;
+  }
+}
+
+
+    </style>
+  </head>
+  <body>
+  <div class="wrapper">
+    <span class="menu"></span>
+
+    <div class="title">
+      <div id="mapCanvas"></div>
+    </div>
+
+    <div class="overlay">
+        <ul>
+            <li style="font-size: 20px"><a href="index.html">View Parking spaces</a></li>
+            <li style="font-size: 20px"><a href="first.html">Register parking</a></li>
+            <li><a href="http://www.rmc.gov.in/rmcwebsite/default.aspx" style="font-size: 20px">View RMC Website</a></li>
+            <li><a href="http://www.rmc.gov.in/rmcwebsite/contact_us.aspx">Contact</a></li>
+        </ul>
+    </div>
+
+</div>
+    <div id="mapCanvas"></div>
+   <script>
+function initMap() {
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap'
+    };
+                    
+    // Display a map on the web page
+    map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);
+    map.setTilt(50);
+        
+    // Multiple markers location, latitude, and longitude
+    var markers = [
+        ['Marwadi University', 22.3672,70.7976],
+        ['Rajkot Railway station',22.3117, 70.8027],
+        ['Rajkot Municipal Corporation', 22.32797, 70.82927],
+        ['Crystal Mall', 22.2798, 70.7630],
+        ['Race Course Circle', 22.3038945, 70.8021]
+
+    ];
+                        
+    // Info window content
+    var infoWindowContent = [
+        ['<div class="info_content">' +
+        '<h3>Marwadi University</h3>' +
+        '<p><a href="index.html">View Parking</a></p>' + '</div>'],
+        ['<div class="info_content">' +
+        '<h3>Rajkot Railway station</h3>' +
+        '<p><a href="index.html"> View Railway station parking</a></p>' +
+        '</div>'],
+        ['<div class="info_content">' +
+        '<h3>Rajkot Municipal Corporation</h3>' +
+        '<p><a href="index.html"> View parking</a></p>' +
+        '</div>'],
+        ['<div class="info_content">' +
+        '<h3>Crystal Mall</h3>' +
+        '<p><a href="index.html"> View parking</a></p>' +
+        '</div>'],
+        ['<div class="info_content">' +
+        '<h3>Race course Circle</h3>' +
+        '<p><a href="index.html"> View parking</a></p>' +
+        '</div>']
+    ];
+        
+    // Add multiple markers to map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+    // Place each marker on the map  
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i][0]
+        });
+        
+        // Add info window to marker    
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infoWindow.setContent(infoWindowContent[i][0]);
+                infoWindow.open(map, marker);
+            }
+        })(marker, i));
+
+        // Center the map to fit all markers on the screen
+        map.fitBounds(bounds);
+    }
+
+    // Set zoom level
+    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        this.setZoom(10);
+        google.maps.event.removeListener(boundsListener);
+    });
+    
+}
+// Load initialize function
+google.maps.event.addDomListener(window, 'load', initMap);
+</script>
+<script type="text/javascript">
+	$(document).ready(function () {
+
+        $('span').click(function() {
+            $('.overlay').toggleClass('anim');
+        });
+
+        $('.animation').click(function(){
+            $('.anim').toggleClass('reverse-animation');
+        })
+});
+</script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4TRp92KIFAod35j1HZsV14UVjrY8gEaA&callback=initMap"
+    async defer></script>
+  </body>
+</html>

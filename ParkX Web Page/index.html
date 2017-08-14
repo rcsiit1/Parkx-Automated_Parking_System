@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <title>RMC parking</title>
+    <style>
+        td {
+            background-color:;
+            height: 95px;
+            width: 200px;
+        }
+        
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+        }
+        
+        .car {
+            width: 145px;
+            height: 65px;
+            background-image: url("car.png");
+             background-repeat: no-repeat; 
+           }
+        
+        .car1 {
+            width: 145px;
+            height: 65px;
+            background-image: url("car1.png");
+             background-repeat: no-repeat; 
+            
+        }
+        
+        .car2 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 45px;
+            width: 85px;
+            height: 135px;
+            background-image: url("unparked.png");
+            background-repeat: no-repeat; 
+        }
+      #p{
+        font-size: 40px;
+        font-weight: bold;
+       }
+       h1{
+    width:100px;
+    margin-top:-20px;
+    margin-left:255px;
+    background:white;
+    font-size: 30px
+}
+    </style>
+
+</head>
+
+<body>
+
+    <img src="rajkothack.jpg" style=" display: block;height: 120px;width: 100%; margin-top: 0px;display: inline;">
+
+    <br>
+    <center>
+      
+        <p style="padding-top: ;padding-left: 27%"> <font style="font-size: 25px"><b>Rajkot Municipal Corporation</b> <font style="color: #3ED715;font-size: 18px;padding-left: 240px"> * available </font> &nbsp; <font style="color: red;font-size: 18px"> * parked! </font></p>
+    </center>
+    <div class="row">
+      
+      <div class="container" style="border:2px solid black; width:85% ">
+
+<h1>ENTRY</h1>
+<h1 style="margin-top:-40px;  margin-left:895px; width:70px">EXIT</h1>
+
+         <div class="col-md-4" style="margin-left: ">
+                <table style="">
+                    <tr>
+                        <td style="border-top:5px solid  #FFFF01;border-left:5px solid  #FFFF01 ">
+                            <div class="car" id="c1" style=" margin-left: 20px" >
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="border-top:5px solid  #FFFF01;border-left:5px solid  #FFFF01">
+                            <div class="car" id="c2" style=" margin-left: 20px"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-top:5px solid  #FFFF01;border-left:5px solid  #FFFF01;border-bottom:5px solid  #FFFF01">
+                            <div class="car" style=" margin-left: 20px" id="c3"></div>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-4" style="margin-right: ">
+                <table>
+                    <tr>
+                        <td style="border-right:3px solid #FFFF01;border-bottom:5px solid  #FFFF01;border-top:5px solid  #FFFF01">
+                            <div class="car1" style=" margin-left: 20px" id="c4"></div>
+                        </td>
+
+                        <td style="border-bottom:5px solid  #FFFF01;border-top:5px solid  #FFFF01">
+                            <div class="car" style=" margin-left: 20px;" id="c5"> </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td style="border-right:3px solid  #FFFF01;border-bottom:5px solid  #FFFF01">
+                            <div class="car1" style=" margin-left: 20px" id="c6"></div>
+                        </td>
+                        <td style="border-bottom:5px solid  #FFFF01">
+                            <div class="car" style=" margin-left: 20px;" id="c17"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-right:3px solid  #FFFF01;border-bottom:5px solid  #FFFF01 ">
+                            <div class="car1" style=" margin-left: 20px" id="c7"></div>
+                        </td>
+                        <td style="border-bottom:5px solid  #FFFF01">
+                            <div class="car" style=" margin-left: 20px" id="c18"></div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+                <div class="col-md-4" style="padding-left: 160px">
+                    <table>
+                        <tr>
+                            <td style="border-bottom:5px solid  #FFFF01;border-top:5px solid  #FFFF01;border-right:5px solid  #FFFF01">
+                                <div class ="car1" style=" margin-left: 20px" id="c8"></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="border-bottom:5px solid  #FFFF01;border-right:5px solid  #FFFF01">
+                                <div class="car1" style=" margin-left: 20px" id="c9"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:5px solid  #FFFF01;border-bottom:5px solid  #FFFF01">
+                                <div class="car1" style=" margin-left: 20px" id="c10"></div>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+                
+
+                <div class="col-md-12" style="padding-top: 20px  ">
+                    <table>
+                        <tr>
+                            <td style="border-left:5px solid  #FFFF01;border-right:5px solid  #FFFF01;border-bottom:5px solid  #FFFF01;">
+                                <div class="car2" id="c11"></div>
+                            </td>
+                            <td style="border-right:5px solid  #FFFF01;border-bottom:5px solid  #FFFF01">
+                                <div class="car2" id="c12"></div>
+                            </td>
+                            <td style="border-right:5px solid  #FFFF01;border-bottom:5px solid  #FFFF01">
+                                <div class="car2" id="c13"></div>
+                            </td>
+                            <td style="border-right:5px solid  #FFFF01;border-bottom:5px solid  #FFFF01">
+                                <div class="car2" id="c14"></div>
+                            </td>
+                            <td style="border-right:5px solid  #FFFF01;border-bottom:5px solid  #FFFF01">
+                                <div class="car2" id="c15"></div>
+                            </td>
+                            <td style="border-bottom:5px solid  #FFFF01; border-right:5px solid  #FFFF01">
+                                <div class="car2" id="c16"></div>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+     </div>
+         <p style="margin-left:1180px">&copy;PARKX</p> 
+                </div>
+				
+				<iframe id="frame" src="http://192.168.43.245/" style="display:none"></iframe>
+                <script>
+				window.addEventListener("message", receiveMessage, false);
+
+function receiveMessage(event)
+{
+var value=event.data.value;
+if(value)
+{
+ console.log(value);
+ if(value.trim()=="Vehicle has been parked")
+ {
+ $("#c2").css('background-image', 'url(carparked.png)');
+ }
+ else
+ {
+ $("#c2").css('background-image','url(car.png)');
+ }
+ }
+}  
+	
+
+            $(function colorchange(){
+  $("#c11,#c12,#c13,#c14,#c15,#c16").click(function(){
+     $(this).css('background-image', 'url(parked.png)');
+  });
+
+
+   $("#c4,#c6,#c7,#c8,#c9,#c10").click(function(){
+     $(this).css('background-image', 'url(car1parked.png)');
+  });
+   
+   $("#c1,#c2,#c3,#c5,#c17,#c18").click(function(){
+     $(this).css('background-image', 'url(carparked.png)');
+  });
+
+
+
+           
+});
+
+
+     
+ </script>
+</body>
+
+</html>
